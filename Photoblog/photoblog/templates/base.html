@@ -48,6 +48,65 @@
         .navitems>li>a {
             @apply h-12 px-4 hover:bg-gray-700 rounded-lg flex items-center gap-2
         }
+        .btn_new {
+            padding: 15px 40px;
+            border: none;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 12px;
+        }
+        .btn_new::after{
+            content: "";
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+
+        }
+        .btn_new::before{
+            content: "";
+            background: linear-gradient(
+                45deg,
+                #ff0000, #ff7300, #fffb00, #48ff00,
+                #00ffd5, #002bff, #ff00c8, #ff0000
+                );
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 600%;
+            z-index: -1;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            filter: blur(8px);
+            animation: glowing 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+            opacity: 1;
+        }
+        @keyframes glowing {
+            0% {background-position: 0 0;}
+            50% {background-position: 400% 0;}
+            100% {background-position: 0 0;}
+        }
+        .btn_new:hover::before {
+            opacity: 1;
+        }
+
+        .btn_new:active:after{
+            background: transparent;
+        }
+
+        .btn_new:active {
+            color: #000;
+            font-weight: bold;
+        }
         .button {
             display: inline-flex;
             flex-wrap: wrap;
@@ -152,13 +211,19 @@
         </nav>
     </header>
     <hero
-        class="block bg-gray-700 text-white text-center py-24 px-10 bg-[url('https://www.bdcnetwork.com/sites/default/files/AdobeStock_624499925.jpg')] bg-cover bg-center">
+        class="block bg-gray-700 text-white text-center py-24 z-10 relative px-10 bg-[url('https://www.bdcnetwork.com/sites/default/files/AdobeStock_624499925.jpg')] bg-cover bg-center">
         <h1 class="titleBlip">Photos & caption blogging</h1>
         <p class="font-bold mb-5">Share your favorite photos from Flicker and add a great caption</p>
-        <a class="button fontFam " href="">Get started</a>
+        <a class="btn_new fontFam" href="">Get started</a>
     </hero>
-    <content class="grid grid-cols-3 max-w-7xl mx-auto mt-6">
-        <main class="col-span-2 mx-[10%] order-2 md:order-1">
+    <content x-data="{mobileSidebarOpen : false}" class="grid grid-cols-3 max-w-7xl mx-auto mt-6">
+        <mobileSidebarNar class="md:hidden col-span-full mx-auto mb-6 z-10 relative">
+            <a @click="mobileSidebarOpen = !mobileSidebarOpen" class="flex items-center cursor-pointer select-none fontFam hover:bg-white rounded-lg p-3 mb-5">
+                <span>Categories</span>
+                <img x-bind:class="mobileSidebarOpen && 'rotate-180 duration-300'" class="w-4 ml-1.5" src="https://img.icons8.com/ios/50/000000/expand-arrow--v2.png">
+            </a>
+        </mobileSidebarNar>
+        <main class="col-span-full md:col-span-2 mx-[5%] md:mx-[10%] order-2 md:order-1">
             <article class="card fontFam">
                 <div class="flex items-center justify-between px-4 h-14">
                     <h3 class="font-bold w-[50%] truncate">Name of the post</h3>
@@ -193,7 +258,10 @@
                 </div>
             </article>
         </main>
-        <aside class="col-span-1 mr-[20%] order-1 md:order-2">
+        <aside x-show="mobileSidebarOpen" x-cloak class="md:!block col-span-full md:col-span-1 mx-[5%] md:mr-[20%] order-1 md:order-2"
+        x-transition:enter="duration-300 ease-out"
+        x-transition:enter-start="opacity-0 -mt-96"
+        x-transition:enter-end="opacity-100 mt-0">
             <section class="card p-4">
                 <h2>Categories:</h2>
                 <ul class="hoverlist fontraw text-xl">
