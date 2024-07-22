@@ -1,0 +1,37 @@
+{% extends 'layouts/content.html' %}
+
+{% block content %}
+        <article class="card fontFam">
+            <div class="flex items-center justify-between px-4 h-14">
+                <h3 class="font-bold w-[50%] truncate">Name of the post</h3>
+                <div>flicker @ <a href="" class="hover:underline" target="_blank">John Doe</a></div>
+            </div>
+            <figure>
+                <a href=""><img class="w-full"
+                        src="https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg?cs=srgb&dl=pexels-8moments-1266810.jpg&fm=jpg"
+                        alt=""></a>
+            </figure>
+            <div class="p-4 pb-2">
+                <a class="flex items-center gap-2 mb-4">
+                    <img class="w-6 h-6 rounded full"
+                        src="https://img.icons8.com/nolan/64/1A6DFF/C822FF/checked-2.png" alt="checked-2" />
+                    <span class="fontFam hover:underline">Name</span>
+                </a>
+                <p class="fontraw px-4 text-5xl mb-10">Photo description</p>
+                <div class="flex items-center gap-2 mb-5">
+                    <a class="bg-blue-200 rounded-full px-3 py-1 hover:bg-blue-500" href="">Nature</a>
+                    <a class="bg-blue-200 rounded-full px-3 py-1 hover:bg-blue-500" href="">Mountains</a>
+                </div>
+                <div class="flex items-center justify-between px-2">
+                    <a class="font-bold" href="">Comments:<span class="font-light ml-2">3</span></a>
+                    <div class="flex items-center gap-4 [&>a:hover:underline]">
+                        <div class="flex items-center gap-1 mr-3"><img class="w-7 h-7"
+                                src="https://img.icons8.com/3d-fluency/94/like--v8.png" alt="like" />2</div>
+                        <a href="">Like</a>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </article>    
+{% endblock %}

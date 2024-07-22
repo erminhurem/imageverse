@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/nolan/64/stack-of-photos.png">
+    <title>ImageVerse</title>
+    <style type="text/tailwindcss">
+        [x-cloak] {
+            display: none !important;
+        }
+        :root {
+            --primary: white;
+            --primary-hover: #3C3072 ;
+        }
+        h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family:honk;
+        }
+        h2{
+            font-size: 1.5rem;
+            font-family: honk;
+            font-weight: bold;
+            line-height: 2rem;
+            margin-bottom: 0.75rem;
+
+        }
+        p {
+            font-family:honk;
+            font-size: 2rem;
+        }
+        .fontFam {
+            font-family: honk;
+            font-size: 1.5rem;
+        }
+        .fontraw {
+            font-family: honk;
+        }
+        .navitems>li>a {
+            @apply h-12 px-4 hover:bg-gray-700 rounded-lg flex items-center gap-2
+        }
+        .btn_new {
+            padding: 15px 40px;
+            border: none;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 12px;
+        }
+        .btn_new::after{
+            content: "";
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+
+        }
+        .btn_new::before{
+            content: "";
+            background: linear-gradient(
+                45deg,
+                #ff0000, #ff7300, #fffb00, #48ff00,
+                #00ffd5, #002bff, #ff00c8, #ff0000
+                );
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 600%;
+            z-index: -1;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            filter: blur(8px);
+            animation: glowing 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+            opacity: 1;
+        }
+        @keyframes glowing {
+            0% {background-position: 0 0;}
+            50% {background-position: 400% 0;}
+            100% {background-position: 0 0;}
+        }
+        .btn_new:hover::before {
+            opacity: 1;
+        }
+
+        .btn_new:active::after{
+            background: transparent;
+        }
+
+        .btn_new:active {
+            color: #000;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            text-align: center;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            padding: 0 1rem;
+            padding-left: 1rem;
+            min-height: 3.3rem;
+            font-weight: 600;
+            box-shadow: 0 4px 3px rgb(0,0,0,0.1);
+            transition-property: transform;
+            transition-duration: .2s;
+            color: white;
+            background-color: var(--primary);
+        }
+        .button:hover {
+            background-color: var(--primary-hover);
+        }
+        .button:active{
+            transform: scale(0.95);
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0,0,0,0.1);
+            margin-bottom: 2rem;
+            background-color: white;
+            padding-bottom: 1rem;
+
+        }
+        .hoverlist>*{
+            @apply hover:bg-indigo-100 rounded-md transition duration-150;
+            
+        }
+        .hoverlist>*>a{
+            @apply p-2 block flex items-center;
+        }
+        .highlight {
+            @apply !bg-indigo-100;
+        }
+        .titleBlip {
+            animation: 1s fadeIn;
+        }
+        @keyframes fadeIn{
+            0% {opacity: 0;}
+            10% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+    </style>
+</head>
+
+<body class="bg-gray-700">
+    {% include "includes/header.html" %}
+    {% include "includes/hero.html" %}
+    {% block layout %}
+    {% endblock %}
+</body>
+
+</html>
